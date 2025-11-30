@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class=""left">
+      <button class=""menu-btn">&#9776</button>
+    <div class="logo">S&A.</div>
+    </div>
+    <div class ="center">
+      <input type="text" placeholder="Search by Inspiration" class="search">
+    </div>
+    <div class="right">
+      <a href="#" class="login">Log in</a>
+      <a href="#" class="signup">sign up</a>
+       </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="sub-text">Nominee – Nov 12, 2025</p>
+    <h1>SABISHREK DESIGN</h1>
+
+    <div class="author">
+      <img src="MYPIV.jpg" class="profile">
+      <span>Sabreen Haris <strong>PRO</strong></span>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <section class="portfolio-section">
+
+    <!-- Left Side Menu -->
+    <div class="side-menu">
+      <p>Home</p>
+      <p>Me</p>
+      <p>Portfolio</p>
+      <p>Services</p>
+      <p>Get in touch</p>
+    </div>
+
+    <!-- Image -->
+    <div class="photo-box">
+      <img src="MYPIV.jpg" class="hero-img">
+    </div>
+
+    <!-- Right Content -->
+    <div class="text-box">
+      <h2>Digital Designer</h2>
+      <p>I’m Sabreen Haris.<br>I’ll make design you want to click.</p>
+
+      <h3 class="underline">Craft like this ✦</h3>
+      <a class="portfolio-link" href="#">Portfolio</a>
+    </div>
+
+  </section>
+
+  <!-- Cookie popup -->
+  <div class="cookie-popup" id="cookiePopup">
+    <p>This website uses cookies to ensure you get the best experience.</p>
+    <button class="cookie-btn" onclick="hideCookie()">Got it</button>
+  </div>
+
+  <script>
+    function hideCookie() {
+      document.getElementById("cookiePopup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
