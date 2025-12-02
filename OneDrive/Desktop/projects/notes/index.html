@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mental Health Tracker</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  background: linear-gradient(135deg, #ffe2ff, #dff3ff);
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+}
+
+/* Layout box styling */
+.section {
+  background: rgba(255, 255, 255, 0.45);
+  padding: 20px;
+  border-radius: 18px;
+  backdrop-filter: blur(20px);
+  margin: 20px 0;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: 40px;
+  margin: 0;
+  color: #9e5cff;
+}
+
+#currentDate {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* Icon title badge */
+.title-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  color: white;
+}
+
+.pink { background: #ff6fb0; }
+.blue { background: #4bc6ff; }
+.yellow { background: #ffc94d; }
+.purple { background: #b299ff; }
+.green { background: #59dd84; }
+
+/* clickable checkbox */
+.circle-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid gray;
+  cursor: pointer;
+  display: inline-block;
+  transition: 0.2s;
+  margin-right: 10px;
+}
+.circle-checkbox.checked {
+  background: #ff6fb0;
+  border-color: #ff2c93;
+}
+
+/* Water drops */
+.water-drop {
+  font-size: 26px;
+  opacity: 0.3;
+  cursor: pointer;
+  display: inline-block;
+  transition: 0.25s;
+}
+.water-drop.filled {
+  opacity: 1;
+  color: #4bc6ff;
+}
+
+/* Stars */
+.star-rating {
+  font-size: 32px;
+  cursor: pointer;
+  display: inline-block;
+  transition: 0.2s;
+  color: #f4d05b;
+}
+
+/* Sleep selection */
+.sleep-btn {
+  background: #f8eeff;
+  border-radius: 12px;
+  padding: 6px;
+  margin: 8px 0;
+  cursor: pointer;
+  text-align: center;
+}
+.sleep-btn.selected {
+  background: #b299ff;
+  color: white;
+}
+
+/* Mood */
+.mood-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  margin: 6px;
+  opacity: 0.4;
+  transition: 0.2s;
+}
+.mood-circle.selected {
+  opacity: 1;
+  border: 3px solid white;
+  transform: scale(1.1);
+}
+
+.red { background: #ff6f6f; }
+.orange { background: #ff9f42; }
+.yellowMood { background: #ffe44c; }
+.greenMood { background: #76d97b; }
+.blueMood { background: #61a8ff; }
+
+/* Notes box */
+textarea {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 14px;
+  border: none;
+  padding: 12px;
+  resize: none;
+  outline: none;
+}
+</style>
+</head>
+<body>
+
+<h1>tracking sheet</h1>
+<div id="currentDate"></div>
+
+<!-- To-do -->
+<div class="section">
+  <div class="title-icon pink">💗</div>
+  <h3>To-do list:</h3>
+  <div><span onclick="toggleCheckbox(this)" class="circle-checkbox"></span> _______</div>
+  <div><span onclick="toggleCheckbox(this)" class="circle-checkbox"></span> _______</div>
+  <div><span onclick="toggleCheckbox(this)" class="circle-checkbox"></span> _______</div>
+</div>
+
+<!-- Morning Routine -->
+<div class="section">
+  <div class="title-icon yellow">☕</div>
+  <h3>Morning Routine:</h3>
+
+  <div><span onclick="toggleCheckbox(this)" class="circle-checkbox"></span> Meditation</div>
+  <div><span onclick="toggleCheckbox(this)" class="circle-checkbox"></span> Breakfast</div>
+  <div><span onclick="toggleCheckbox(this)" class="circle-checkbox"></span> Vitamins</div>
+  <div><span onclick="toggleCheckbox(this)" class="circle-checkbox"></span> Exercise</div>
+
+  <br><strong>Water balance:</strong><br>
+  <span onclick="toggleWater(this)" class="water-drop">💧</span>
+  <span onclick="toggleWater(this)" class="water-drop">💧</span>
+  <span onclick="toggleWater(this)" class="water-drop">💧</span>
+  <span onclick="toggleWater(this)" class="water-drop">💧</span>
+  <span onclick="toggleWater(this)" class="water-drop">💧</span>
+  <span onclick="toggleWater(this)" class="water-drop">💧</span>
+</div>
+
+<!-- Gratitude -->
+<div class="section">
+  <div class="title-icon pink">💗</div>
+  <h3>Things I am grateful for:</h3>
+  ⭐ __________________<br>
+  ⭐ __________________<br>
+</div>
+
+<!-- Sleep + rating + mood -->
+<div class="section">
+  <div class="title-icon purple">🌙</div>
+
+  <h3>Hours of sleep:</h3>
+  <div onclick="selectSleep(this)" class="sleep-btn">0–3</div>
+  <div onclick="selectSleep(this)" class="sleep-btn">4–6</div>
+  <div onclick="selectSleep(this)" class="sleep-btn">7–9</div>
+  <div onclick="selectSleep(this)" class="sleep-btn">10–12</div>
+
+  <br><strong>Productivity:</strong><br>
+  <span class="star-rating" onclick="setRating(1)">☆</span>
+  <span class="star-rating" onclick="setRating(2)">☆</span>
+  <span class="star-rating" onclick="setRating(3)">☆</span>
+  <span class="star-rating" onclick="setRating(4)">☆</span>
+  <span class="star-rating" onclick="setRating(5)">☆</span>
+
+  <br><br><strong>My mood:</strong><br>
+  <div onclick="selectMood(this)" class="mood-circle red"></div>
+  <div onclick="selectMood(this)" class="mood-circle orange"></div>
+  <div onclick="selectMood(this)" class="mood-circle yellowMood"></div>
+  <div onclick="selectMood(this)" class="mood-circle greenMood"></div>
+  <div onclick="selectMood(this)" class="mood-circle blueMood"></div>
+</div>
+
+<!-- Notes -->
+<div class="section">
+  <h3>Notes:</h3>
+  <textarea placeholder="Write your thoughts..."></textarea>
+</div>
+
+<script>
+function toggleCheckbox(el){ el.classList.toggle('checked'); }
+function toggleWater(el){ el.classList.toggle('filled'); }
+function selectSleep(el){
+  document.querySelectorAll('.sleep-btn').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function selectMood(el){
+  document.querySelectorAll('.mood-circle').forEach(m=>m.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function setRating(n){
+  document.querySelectorAll('.star-rating').forEach((s,i)=>s.textContent = i<n ? "★" : "☆");
+}
+function initDate(){
+  let d=new Date();
+  let day=d.getDate();
+  let suffix=(day>3&&day<21)?"th":(["st","nd","rd"][day%10-1]||"th");
+  document.getElementById("currentDate").textContent =
+  d.toLocaleString("en-US",{month:"long"})+" "+day+suffix+", "+d.getFullYear();
+}
+initDate();
+</script>
+
+</body>
+</html>
