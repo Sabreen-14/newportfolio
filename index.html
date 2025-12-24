@@ -1,38 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Leaflet Fix</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <meta charset="UTF-8" />
+  <title>Point to Point Navigation</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <!-- Leaflet Routing CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"
+  />
 
   <style>
+    /* RESET */
     html, body {
       height: 100%;
-      width: 100%;
       margin: 0;
+      font-family: Arial, sans-serif;
     }
+
+    /* MAP */
     #map {
       height: 100vh;
       width: 100vw;
     }
+
+    /* INFO PANEL */
+    #info-panel {
+      position: fixed;
+      top: 15px;
+      left: 60px;
+      background: white;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      min-width: 180px;
+    }
+
+    #info-panel div {
+      margin-bottom: 4px;
+    }
+
+    /* CONTROLS */
+    .controls {
+      margin-top: 8px;
+      display: flex;
+      gap: 6px;
+    }
+
+    #info-panel button {
+      font-size: 12px;
+      padding: 4px 8px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background: #3498db;
+      color: white;
+    }
+
+    #info-panel button:hover {
+      background: #2980b9;
+    }
+
+    /* RESET BUTTON */
+    #reset-btn {
+      background: #e74c3c;
+    }
+
+    #reset-btn:hover {
+      background: #c0392b;
+    }
+    
+
   </style>
 </head>
+
 <body>
 
-<div id="map"></div>
+  <!-- INFO PANEL -->
+  <div id="info-panel">
+    <div>Distance: <span id="distance">-</span> km</div>
+    <div>Speed: <span id="speed">-</span> km/h</div>
+    <div>ETA: <span id="eta">-</span> min</div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script>
-  const map = L.map('map', {
-    worldCopyJump: true
-  }).setView([12.9716, 77.5946], 5);
+    <div class="controls">
+      <button id="pause-btn">⏸ Pause</button>
+      <button id="resume-btn">▶ Resume</button>
+      <button id="reset-btn">🔄 Reset</button>
+      
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    minZoom: 2,
-    maxZoom: 19,
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
-</script>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Leaflet Routing JS -->
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+  
+
+  <!-- YOUR JS -->
+  <script src="script.js"></script>
 
 </body>
 </html>
-
